@@ -1,3 +1,6 @@
+import gr.spinellis.ckjm.CkjmOutputHandler;
+import gr.spinellis.ckjm.ClassMetrics;
+
 public class ObjectMetrics {
 
     //Use CKJM Here
