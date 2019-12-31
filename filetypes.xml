@@ -1,0 +1,8 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <removed_mapping ext="mf" type="Manifest" />
+      <mapping ext="mf" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>
