@@ -22,21 +22,21 @@ public class Main {
         System.out.println("Cloning...");
         Grabber co = new Grabber();
 
-        CountDownLatch repoCount = new CountDownLatch(1);
-
-        Thread threadCloneRepo = new Thread(new Respository(repoCount,MainDirectory.getMainPath()));
-        threadCloneRepo.start();
-        repoCount.await();
-        System.out.println("Cloning Completed....");
-        System.out.println("Saved files into : "+MainDirectory.getMainPath());
-
-
-        System.out.println("Compiling process....");
-        CountDownLatch comCount = new CountDownLatch(1);
-        Thread comThread = new Thread(new Compiler(comCount,MainDirectory.getMainPath()));
-        comThread.start();
-        comCount.await();
-        System.out.println("Compiling is Done....");
+//        CountDownLatch repoCount = new CountDownLatch(1);
+//
+//        Thread threadCloneRepo = new Thread(new Respository(repoCount,MainDirectory.getMainPath()));
+//        threadCloneRepo.start();
+//        repoCount.await();
+//        System.out.println("Cloning Completed....");
+//        System.out.println("Saved files into : "+MainDirectory.getMainPath());
+//
+//
+//        System.out.println("Compiling process....");
+//        CountDownLatch comCount = new CountDownLatch(1);
+//        Thread comThread = new Thread(new Compiler(comCount,MainDirectory.getMainPath()));
+//        comThread.start();
+//        comCount.await();
+//        System.out.println("Compiling is Done....");
 
         CountDownLatch runLatch = new CountDownLatch(1);
          ControlUnit r = new ControlUnit(runLatch,MainDirectory.getMainPath());
