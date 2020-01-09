@@ -65,7 +65,7 @@ int num1=1;
             matArr.add(num,matric);
             num++;
 
-            CkjmLog.createLog(gtclass,matric,mainPath);
+            CkjmLog.createLog(gtclass,matric,mainPath,ckjmpath);
 
         }catch (IOException | InterruptedException ex){
 
@@ -102,6 +102,7 @@ int num1=1;
 
             }
         }
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the CKJM Path : ");
         String Ckjmpath = scan.nextLine();
