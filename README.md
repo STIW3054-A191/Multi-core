@@ -38,6 +38,7 @@ Calculate the execution time.
 ![alt text](https://github.com/STIW3054-A191/Multi-core/blob/255101/class.jpg)
 
 # YouTube Presentation
+https://youtu.be/30XV11OqQis
  
 # References
 + ExecutorService in Java. Retrieved From https://howtodoinjava.com/java/multi-threading/executor-service-example/
