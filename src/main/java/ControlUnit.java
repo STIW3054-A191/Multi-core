@@ -48,7 +48,7 @@ int num1=1;
 
             RecursiveSearch.search(new File(path),"class");
             String gtclass = RecursiveSearch.resultPath;
-            String ckjm = "cmd /c   cd C:\\Users\\Raven\\Desktop && java -jar C:\\Users\\Raven\\IdeaProjects\\Multi-Core\\ckjm-1.9.jar "+gtclass+"\\*class";
+            String ckjm = "cmd /c java -jar C:\\Users\\Raven\\IdeaProjects\\Multi-Core\\ckjm-1.9.jar "+gtclass+"\\*class";
             Process a = Runtime.getRuntime().exec(ckjm);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(a.getInputStream()));
@@ -101,7 +101,8 @@ int num1=1;
         }
 
         for(int i = 0;i < pomPathList.size();i++){
-            System.out.println("POM TRY FOR RUNJAR : "+pomPathList.get(i));
+            System.out.println("Enter your CKJM path");
+
             runJar(pomPathList.get(i));
         }
         latch.countDown();

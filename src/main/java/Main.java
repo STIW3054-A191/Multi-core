@@ -10,7 +10,7 @@ public class Main {
         int core = Runtime.getRuntime().availableProcessors();
         ExecutorService service = Executors.newFixedThreadPool(core);
         Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter your Path to save : ");
+        System.out.println("Please set Directory : ");
         String gtpath = scan.nextLine();
 
         CountDownLatch buildFolder = new CountDownLatch(1);
@@ -19,7 +19,7 @@ public class Main {
         buildFolder.await();
 
         System.out.println("Building Download Folder...");
-        System.out.println("Cloning....");
+        System.out.println("Cloning...");
         Grabber co = new Grabber();
 
         CountDownLatch repoCount = new CountDownLatch(1);
@@ -27,9 +27,9 @@ public class Main {
         Thread threadCloneRepo = new Thread(new Respository(repoCount,MainDirectory.getMainPath()));
         threadCloneRepo.start();
         repoCount.await();
-        System.out.println("Cloning is Done....");
+        System.out.println("Cloning Completed....");
+        System.out.println("Saved files into : "+MainDirectory.getMainPath());
 
-        System.out.println("This i smain " +MainDirectory.getMainPath());
 
         System.out.println("Compiling process....");
         CountDownLatch comCount = new CountDownLatch(1);
