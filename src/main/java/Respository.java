@@ -24,6 +24,7 @@ private String path;
                 String full_command;
                 String command = "git clone {}";
                 full_command = command.replace("{}", urlList.get(i));
+                System.out.println("Clone : "+urlList.get(i));
 
                 Process p = Runtime.getRuntime().exec(full_command, null, new File(path));
                 p.waitFor();
@@ -36,42 +37,17 @@ private String path;
 
     }
 
-//    public void Clone() throws IOException {
-//        ExecutorService executor = Executors.newCachedThreadPool();
-//        Task task = new Task();
-//        Future<Integer> result = executor.submit(task);
-//        executor.shutdown();
-//        try {
-//            Thread.sleep(1000);
-//            //Respository a = new Respository();
-//            //a.run();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
+
+//    class Task implements Callable<Integer> {
+//        public Integer call() throws Exception {
+//            System.out.println("The Main Thread Start");
+//            Thread.sleep(3000);
+//            int resNumber = 0;
+//            Grabber gl = new Grabber();
+//            for (int i = 0; i < gl.getLinks().size(); i++)
+//                resNumber += 1;
+//            return resNumber;
 //        }
-//        System.out.println("The main thread is performing tasks");
-//
-//        try {
-//            System.out.println("There are " + result.get() + " files need to be downloaded for this task");
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("All repositories have been successfully cloned ");
 //    }
-
-    class Task implements Callable<Integer> {
-        public Integer call() throws Exception {
-            System.out.println("The Main Thread Start");
-            Thread.sleep(3000);
-            int resNumber = 0;
-            Grabber gl = new Grabber();
-            for (int i = 0; i < gl.getLinks().size(); i++)
-                resNumber += 1;
-            return resNumber;
-        }
-
-
-    }
 
 }

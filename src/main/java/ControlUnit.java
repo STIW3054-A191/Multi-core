@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 
 public class ControlUnit implements Runnable{
@@ -34,7 +35,8 @@ public class ControlUnit implements Runnable{
     int i =0;
 
 int num1=1;
-    public void runJar(String path){
+
+    public void runJar(String path,String ckjmpath){
         try{
             RecursiveSearch.search(new File(path),"jar");
             String jarCommand =RecursiveSearch.resultPath;
@@ -48,9 +50,10 @@ int num1=1;
 
             RecursiveSearch.search(new File(path),"class");
             String gtclass = RecursiveSearch.resultPath;
-            String ckjm = "cmd /c java -jar C:\\Users\\Raven\\IdeaProjects\\Multi-Core\\ckjm-1.9.jar "+gtclass+"\\*class";
+//            String ckjm = "cmd /c java -jar C:\\Users\\Raven\\IdeaProjects\\Multi-Core\\ckjm-1.9.jar "+gtclass+"\\*class";
+            String ckjm = "cmd /c java -jar "+ ckjmpath+" "+gtclass+"\\*class";
             Process a = Runtime.getRuntime().exec(ckjm);
-
+            System.out.println("Checking CKJM metrics for :  " +matric);
             BufferedReader reader = new BufferedReader(new InputStreamReader(a.getInputStream()));
             String line;
 
@@ -69,7 +72,7 @@ int num1=1;
         }
 
     }
-    public void run(){
+    public synchronized void run(){
          String path = mainPath;
         List<String> pomPathList=new ArrayList<String>();
         for(int i =0;i < getFolder(path).size();i++){
@@ -99,11 +102,14 @@ int num1=1;
 
             }
         }
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the CKJM Path : ");
+        String Ckjmpath = scan.nextLine();
+        System.out.println("Creating log files for RUN jar and CKJM");
 
         for(int i = 0;i < pomPathList.size();i++){
-            System.out.println("Enter your CKJM path");
+            runJar(pomPathList.get(i),Ckjmpath);
 
-            runJar(pomPathList.get(i));
         }
         latch.countDown();
     }
