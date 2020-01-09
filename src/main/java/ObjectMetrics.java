@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.util.List;
-
 //    WMC: Weighted methods per class
 //    DIT: Depth of Inheritance Tree
 //    NOC: Number of Children
@@ -47,8 +46,9 @@ public static void cal(List<String> matric) throws FileNotFoundException {
 String mat=null;
 
      for(int i=0;i<25;i++){
-      mat=matric.get(i);
-
+       try {
+         mat = matric.get(i);
+       }catch (IndexOutOfBoundsException e){}
       int[] bitar = new int[10];
       int a=0;
     for(int u=0;u<10;u++){
@@ -56,23 +56,18 @@ String mat=null;
       bitar[a] = total[i][u];
       a++;
     }
-    System.out.println("I : "+i);
       arr[i] = bitar[1]+ " "+ bitar[2]+"  "+bitar[3]+"  "+bitar[4]+"  "+bitar[5]+"  "+bitar[6]+"  "+bitar[7]+"  "+bitar[8]+" ";
       int h=i+1;
       //Start Excel Extractor
       ExcelExtractor exc = new ExcelExtractor(mat,bitar[1],bitar[2],bitar[3],bitar[4],bitar[5],bitar[6],bitar[7],bitar[8],h);
-        exc.write();
+      exc.write();
       exc.printthis1();
-    bitar = null; a =0;
+      bitar = null; a =0;
   }
-// for(int i=0;i<25;i++){
-//    System.out.println("Checking for " +i + " : " + arr[i]);
-// }
 
 }
 
 
 }
-
 
 

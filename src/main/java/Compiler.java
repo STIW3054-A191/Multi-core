@@ -1,9 +1,16 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
+public class Compiler implements Runnable {
+private CountDownLatch latch1;
+private static String mainPath;
 
-public class Compiler {
+    Compiler(CountDownLatch latch1,String mainPath){
+        this.latch1=latch1; this.mainPath=mainPath;
+    }
 
     public List<String> getFolder(String path){
         File file = new File(path);
@@ -17,52 +24,50 @@ public class Compiler {
         }
         return folderPathList;
     }
-    public void CompileProgram(String path) throws InterruptedException{
+    int num =1;
+    public synchronized void CompileProgram(String path) throws InterruptedException{
 
-        //try {
-            System.out.println("--"+path);
-            String matricNum = path.substring(12, 18);
-            //String Command = "cmd /c   cd "+path+"&& mvn compile > D:\\myData\\log\\"+matricNum+".log.txt";
-            //Process a = Runtime.getRuntime().exec(Command);
-            //Creating LOG FILE USING COMMAND
-           // a.waitFor();
-           //a.destroy();
-       // } catch (IOException ex) {
-         //   ex.printStackTrace();
-           // Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        try {
+
+            String matric = path.replaceAll("[^0-9]" , "").substring(0,6);
+            String Command = "cmd /c cd "+path+" && mvn compile > "+mainPath+"\\compileLog\\"+matric+"-mvn_Compile.txt";
+            Process a = Runtime.getRuntime().exec(Command);
+            num++;
+            a.waitFor();
+            System.out.println("Compiling : " + path);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
-    public void compile(){
-        String path = "D:\\myData";
+    public void run(){
+        String path = mainPath;
         List<String> pomPathList=new ArrayList<String>();
         for(int i =0;i < getFolder(path).size();i++){
             String folderPath = getFolder(path).get(i);
             Locator ff = new Locator();
             ff.pomPath(folderPath);
-            System.out.println( "This is what "+ff.pomPath(folderPath));
             if(!"".equals(ff.pomPath(folderPath))){
-                int begin=ff.pomPath(folderPath).indexOf("D:");
                 int last=ff.pomPath(folderPath).indexOf("\\pom");
-                if(begin == -1 || last == -1){
-                 System.out.println("NOT INDEX");
+
+                if( last == -1){
+                 System.out.println("No Pom file found");
                 }else {
-                    System.out.println(begin + " FIRST LAST" + last);
-                     pomPathList.add(ff.pomPath(folderPath).substring(begin,last));
+                    pomPathList.add(ff.pomPath(folderPath).substring(0,last));
                 }
             }else{
-                System.out.println("Please upload the full file");
+                System.out.println("No pom file found");
             }
         }
-
 
         for(int i = 0;i < pomPathList.size();i++){
-            System.out.println(pomPathList.get(i) +"This is Compiler POM PATH");
             try {
                 CompileProgram(pomPathList.get(i));
+
             } catch (InterruptedException e) {
-                System.out.println("Ignore this Error");
             }
         }
+        latch1.countDown();
     }
 }

@@ -5,7 +5,9 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Grabber{
 
@@ -45,9 +47,12 @@ public class Grabber{
         List<String> urlList=new ArrayList<String>();
         for(Element linkStr:linkStrs){
             String url=linkStr.getElementsByTag("a").attr("abs:href");
-           System.out.println("url:"+url);
+            //System.out.println("url:"+url);
             urlList.add(url);
         }
+        Set<String> set = new HashSet<>(urlList);
+        urlList.clear();
+        urlList.addAll(set);
         return urlList;
     }
 

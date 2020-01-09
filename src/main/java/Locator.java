@@ -10,7 +10,6 @@ public class Locator {
         finder.findFiles("pom.xml" , path, filenameList);
         String pomPath="";
         for (String filename : filenameList) {
-            //System.out.println(filename +"This is from Locator : FileNeme");
             pomPath = filename;
         }
         return pomPath;
@@ -18,7 +17,7 @@ public class Locator {
 
 
     public void findFiles(String filenameSuffix, String currentDirUsed,
-                          List<String> currentFilenameList) {
+       List<String> currentFilenameList) {
         File dir = new File(currentDirUsed);
         if (!dir.exists() || !dir.isDirectory()) {
             return;

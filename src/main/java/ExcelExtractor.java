@@ -26,7 +26,7 @@ public class ExcelExtractor {
         matric = mat;
     }
     public void printthis1(){
-        System.out.println(matric+" : "+WMC +" | "+ DIT+" | "+NOC+" | "+CBO+" | "+RFC+" | "+LCOM+" | "+Ca+" | "+NPM+" | BIL : "+no);
+        System.out.println("No : "+no + " Matric No : "+matric+" : "+WMC +" | "+ DIT+" | "+NOC+" | "+CBO+" | "+RFC+" | "+LCOM+" | "+Ca+" | "+NPM );
     }
 
     public void write() throws FileNotFoundException {
