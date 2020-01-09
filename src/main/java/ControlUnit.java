@@ -53,7 +53,7 @@ int num1=1;
 //            String ckjm = "cmd /c java -jar C:\\Users\\Raven\\IdeaProjects\\Multi-Core\\ckjm-1.9.jar "+gtclass+"\\*class";
             String ckjm = "cmd /c java -jar "+ ckjmpath+" "+gtclass+"\\*class";
             Process a = Runtime.getRuntime().exec(ckjm);
-            System.out.println("Checking CKJM metrics for :  " +matric);
+            System.out.println("CKJM metrics " +gtclass);
             BufferedReader reader = new BufferedReader(new InputStreamReader(a.getInputStream()));
             String line;
 
@@ -105,11 +105,10 @@ int num1=1;
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the CKJM Path : ");
         String Ckjmpath = scan.nextLine();
-        System.out.println("Creating log files for RUN jar and CKJM");
 
         for(int i = 0;i < pomPathList.size();i++){
             runJar(pomPathList.get(i),Ckjmpath);
-
+            System.out.println("Creating log files for RUN jar and CKJM");
         }
         latch.countDown();
     }
