@@ -37,6 +37,7 @@ Calculate the execution time.
 # Result/Output
 
 # UML Class Diagram
+![alt text](https://github.com/STIW3054-A191/Multi-core/blob/255101/class.jpg)
 
 # YouTube Presentation
  
