@@ -22,11 +22,8 @@ static String resultPath,jarpath;
         for (File file:files){
             String Find = file.getName();
             if (Find.endsWith(suf)&&Find.contains("jar")&& !Find.contains("original")&& dir.getAbsolutePath().contains("target")){
-               // System.out.println(dir.getAbsolutePath()+"\\" + Find);
                 resultPath=dir.getAbsolutePath()+"\\" + Find;
                 jarpath = dir.getAbsolutePath();
-
-                //System.out.println(count);
                 count++;
                 break;
             }

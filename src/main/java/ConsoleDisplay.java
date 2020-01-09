@@ -1,12 +1,13 @@
 public class ConsoleDisplay {
 
-    public void printHeader(){
+    public static void printHeader(){
 
     }
-    public void printFooter(){
+    public static void printFooter(){
 
     }
-    public void printData(){
+    public static void printData(){
+
 
     }
 }
